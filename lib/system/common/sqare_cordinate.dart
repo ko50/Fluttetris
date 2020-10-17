@@ -1,6 +1,11 @@
 class SqareCordinate {
-  final int x;
-  final int y;
+  int x;
+  int y;
 
   SqareCordinate(this.x, this.y);
+
+  void operator +(SqareCordinate cordinate) {
+    x += cordinate.x;
+    y += cordinate.y;
+  }
 }
