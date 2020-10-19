@@ -4,8 +4,8 @@ import 'package:flute_tris/system/common/rotate_direction.dart';
 class MinoPlacement {
   List<List<int>> currentPlacement;
 
-  void rotate(RotateDirection direction, TetroMino minoType) {
-    if (minoType == TetroMino.O) return;
+  List<List<int>> rotate(RotateDirection direction, TetroMino minoType) {
+    if (minoType == TetroMino.O) return currentPlacement;
 
     List<List<int>> beforePlacement = List.from(
             direction == RotateDirection.Right
@@ -19,9 +19,7 @@ class MinoPlacement {
           .add(beforePlacement[blockIndex][horizonIndex]));
     });
 
-    // TODO SRS繁栄
-
-    currentPlacement = direction == RotateDirection.Right
+    return direction == RotateDirection.Right
         ? rotatedPlacement
         : rotatedPlacement.reversed.toList();
   }
