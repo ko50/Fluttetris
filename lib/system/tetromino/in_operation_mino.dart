@@ -16,7 +16,7 @@ class InOperationMino {
   /// ミノを囲む 3×3 / 4×4 マスの範囲のうちの左上の座標
   ///
   /// 初期値 = 左から4マス、最上部
-  SqareCordinate maserCordinate = SqareCordinate(4, 20);
+  SqareCordinate masterCordinate = SqareCordinate(4, 20);
 
   InOperationMino({
     @required this.minoType,
@@ -40,7 +40,6 @@ class InOperationMino {
           (List<SqareCordinate> previous, row) =>
               previous += row.map((b) => b.cordinate).toList(),
         );
-
     bool flag;
 
     bool failedToMove = movedCordinates.any((cordinate) {
@@ -68,7 +67,7 @@ class InOperationMino {
       x = 0;
       row.forEach((block) {
         if (block == 1) {
-          SqareCordinate cordinate = SqareCordinate(x, y);
+          SqareCordinate cordinate = masterCordinate + SqareCordinate(x, y);
           assignedCordinates.add(cordinate);
         }
         x += 1;

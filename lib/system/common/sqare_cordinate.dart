@@ -6,8 +6,11 @@ class SqareCordinate {
 
   String toString() => "($x, $y)";
 
-  SqareCordinate operator +(SqareCordinate cordinate) =>
-      SqareCordinate(x + cordinate.x, y + cordinate.y);
+  SqareCordinate operator +(SqareCordinate other) =>
+      SqareCordinate(x + other.x, y + other.y);
+
+  SqareCordinate operator -(SqareCordinate other) =>
+      SqareCordinate(x + other.x, y - other.y);
 
   bool operator ==(cordinate) => cordinate.x == x && cordinate.y == y;
 
