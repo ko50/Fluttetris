@@ -31,6 +31,35 @@ class InOperationMino {
         currentPlacedBlocks = PlacedBlocks.allCordinates;
   }
 
+  /// ミノを左右/下に移動
+  void move(MoveDirection direction) {
+    final movedCordinates =
+            assignBlocksCordinatesBy(placement.currentPlacement),
+        currentPlacedBlocks = PlacedBlocks.placedBlocks.fold(
+          <SqareCordinate>[],
+          (List<SqareCordinate> previous, row) =>
+              previous += row.map((b) => b.cordinate).toList(),
+        );
+
+    bool flag;
+
+    bool failedToMove = movedCordinates.any((cordinate) {
+      cordinate += direction.movement;
+      flag = false;
+      currentPlacedBlocks.forEach((alreadyCordinate) {
+        if (flag) return;
+        flag = cordinate.isConflicting(alreadyCordinate);
+      });
+      print(cordinate);
+      return flag;
+    });
+
+    if (!failedToMove)
+      blocks
+          .asMap()
+          .forEach((index, block) => block.cordinate = movedCordinates[index]);
+  }
+
   List<SqareCordinate> assignBlocksCordinatesBy(List<List<int>> placement) {
     final assignedCordinates = <SqareCordinate>[];
     int x, y = 0;
@@ -48,9 +77,5 @@ class InOperationMino {
     });
 
     return assignedCordinates;
-  }
-
-  void move(MoveDirection direction) {
-    blocks.forEach((block) {});
   }
 }
