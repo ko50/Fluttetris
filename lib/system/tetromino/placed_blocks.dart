@@ -9,4 +9,13 @@ class PlacedBlocks {
   static List<List<SqareCordinate>> get allCordinates => placedBlocks
       .map((row) => row.map((block) => block.cordinate).toList())
       .toList();
+
+  bool isOverlappingBy(List<SqareCordinate> pendingMino) {
+    final bool isOverlapping = allCordinates.any((row) => row.any(
+          (cordinate) => pendingMino.any(
+              (pendingCordinate) => pendingCordinate.isConflicting(cordinate)),
+        ));
+
+    return isOverlapping;
+  }
 }
