@@ -1,12 +1,12 @@
 import 'package:meta/meta.dart';
 
-import 'package:flute_tris/system/common/enum/move_direction.dart';
-import 'package:flute_tris/system/common/rotate_direction.dart';
-import 'package:flute_tris/system/common/sqare_cordinate.dart';
-import 'package:flute_tris/system/tetromino/block.dart';
-import 'package:flute_tris/system/tetromino/mino_placement.dart';
-import 'package:flute_tris/system/tetromino/enum/mino_type.dart';
-import 'package:flute_tris/system/tetromino/placed_blocks.dart';
+import 'package:flute_tris/game_info/common/enum/move_direction.dart';
+import 'package:flute_tris/game_info/common/rotate_direction.dart';
+import 'package:flute_tris/game_info/common/sqare_cordinate.dart';
+import 'package:flute_tris/game_info/tetromino/block.dart';
+import 'package:flute_tris/game_info/tetromino/mino_placement.dart';
+import 'package:flute_tris/game_info/tetromino/enum/mino_type.dart';
+import 'package:flute_tris/game_info/tetromino/placed_blocks.dart';
 
 class InOperationMino {
   final TetroMino minoType;

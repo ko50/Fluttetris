@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flute_tris/system/common/sqare_cordinate.dart';
+import 'package:flute_tris/game_info/common/sqare_cordinate.dart';
 
 class Block {
   final Color color;

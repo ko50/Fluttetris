@@ -1,8 +1,11 @@
-import 'package:flute_tris/system/tetromino/enum/mino_type.dart';
-import 'package:flute_tris/system/common/rotate_direction.dart';
+import 'package:flute_tris/game_info/common/sqare_cordinate.dart';
+import 'package:flute_tris/game_info/tetromino/enum/mino_type.dart';
+import 'package:flute_tris/game_info/common/rotate_direction.dart';
 
 class MinoPlacement {
   List<List<int>> currentPlacement;
+
+  MinoPlacement(this.currentPlacement);
 
   List<List<int>> rotate(RotateDirection direction, TetroMino minoType) {
     if (minoType == TetroMino.O) return currentPlacement;
@@ -24,5 +27,9 @@ class MinoPlacement {
         : rotatedPlacement.reversed.toList();
   }
 
-  MinoPlacement(this.currentPlacement);
+  bool _tryDown() {
+    List<List<int>> placement = List.from(currentPlacement);
+
+    return placement.map(() => )
+  }
 }
