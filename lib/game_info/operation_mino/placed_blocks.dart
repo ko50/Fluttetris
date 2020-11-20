@@ -1,5 +1,5 @@
 import 'package:flute_tris/game_info/common/sqare_cordinate.dart';
-import 'package:flute_tris/game_info/tetromino/block.dart';
+import 'package:flute_tris/game_info/render/block.dart';
 
 class PlacedBlocks {
   PlacedBlocks();

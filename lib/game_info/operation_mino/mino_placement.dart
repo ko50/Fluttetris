@@ -1,6 +1,5 @@
-import 'package:flute_tris/game_info/common/sqare_cordinate.dart';
-import 'package:flute_tris/game_info/tetromino/enum/mino_type.dart';
-import 'package:flute_tris/game_info/common/rotate_direction.dart';
+import 'package:flute_tris/game_info/enum/mino_type.dart';
+import 'package:flute_tris/game_info/enum/rotate_direction.dart';
 
 class MinoPlacement {
   List<List<int>> currentPlacement;
