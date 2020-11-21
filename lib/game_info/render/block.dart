@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flute_tris/game_info/common/sqare_cordinate.dart';
+import 'package:flute_tris/game_info/common/cordinate.dart';
 
 class Block {
   final Color color;
-  SqareCordinate cordinate;
+  Cordinate cordinate;
   bool isActive = true;
 
   Block({

@@ -1,73 +1,73 @@
-import 'package:flute_tris/game_info/common/sqare_cordinate.dart';
+import 'package:flute_tris/game_info/common/cordinate.dart';
 
 enum RotatePattern { NtoE, EtoN, EtoS, StoE, StoW, WtoS, WtoN, NtoW }
 
 extension RotatePatternWallKick on RotatePattern {
-  List<SqareCordinate> get shiftedCordinates {
+  List<Cordinate> get shiftedCordinates {
     switch (this) {
       case RotatePattern.NtoE:
         return [
-          SqareCordinate(0, 0),
-          SqareCordinate(-1, 0),
-          SqareCordinate(-1, 1),
-          SqareCordinate(0, -2),
-          SqareCordinate(-1, -2),
+          Cordinate(0, 0),
+          Cordinate(-1, 0),
+          Cordinate(-1, 1),
+          Cordinate(0, -2),
+          Cordinate(-1, -2),
         ];
       case RotatePattern.EtoN:
         return [
-          SqareCordinate(0, 0),
-          SqareCordinate(1, 0),
-          SqareCordinate(1, -1),
-          SqareCordinate(0, 2),
-          SqareCordinate(1, 2),
+          Cordinate(0, 0),
+          Cordinate(1, 0),
+          Cordinate(1, -1),
+          Cordinate(0, 2),
+          Cordinate(1, 2),
         ];
       case RotatePattern.EtoS:
         return [
-          SqareCordinate(0, 0),
-          SqareCordinate(1, 0),
-          SqareCordinate(1, -1),
-          SqareCordinate(0, 2),
-          SqareCordinate(1, 2),
+          Cordinate(0, 0),
+          Cordinate(1, 0),
+          Cordinate(1, -1),
+          Cordinate(0, 2),
+          Cordinate(1, 2),
         ];
       case RotatePattern.StoE:
         return [
-          SqareCordinate(0, 0),
-          SqareCordinate(-1, 0),
-          SqareCordinate(-1, 1),
-          SqareCordinate(0, -2),
-          SqareCordinate(1, -2),
+          Cordinate(0, 0),
+          Cordinate(-1, 0),
+          Cordinate(-1, 1),
+          Cordinate(0, -2),
+          Cordinate(1, -2),
         ];
       case RotatePattern.StoW:
         return [
-          SqareCordinate(0, 0),
-          SqareCordinate(1, 0),
-          SqareCordinate(1, 1),
-          SqareCordinate(0, -2),
-          SqareCordinate(1, -2),
+          Cordinate(0, 0),
+          Cordinate(1, 0),
+          Cordinate(1, 1),
+          Cordinate(0, -2),
+          Cordinate(1, -2),
         ];
       case RotatePattern.WtoS:
         return [
-          SqareCordinate(0, 0),
-          SqareCordinate(-1, 0),
-          SqareCordinate(-1, -1),
-          SqareCordinate(0, 2),
-          SqareCordinate(-1, 2),
+          Cordinate(0, 0),
+          Cordinate(-1, 0),
+          Cordinate(-1, -1),
+          Cordinate(0, 2),
+          Cordinate(-1, 2),
         ];
       case RotatePattern.WtoN:
         return [
-          SqareCordinate(0, 0),
-          SqareCordinate(-1, 0),
-          SqareCordinate(-1, -1),
-          SqareCordinate(0, 2),
-          SqareCordinate(-1, 2),
+          Cordinate(0, 0),
+          Cordinate(-1, 0),
+          Cordinate(-1, -1),
+          Cordinate(0, 2),
+          Cordinate(-1, 2),
         ];
       case RotatePattern.NtoW:
         return [
-          SqareCordinate(0, 0),
-          SqareCordinate(1, 0),
-          SqareCordinate(1, 1),
-          SqareCordinate(0, -2),
-          SqareCordinate(1, -2),
+          Cordinate(0, 0),
+          Cordinate(1, 0),
+          Cordinate(1, 1),
+          Cordinate(0, -2),
+          Cordinate(1, -2),
         ];
       default:
         return null;

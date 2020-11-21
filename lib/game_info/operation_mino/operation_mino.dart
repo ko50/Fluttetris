@@ -3,9 +3,9 @@ import 'package:meta/meta.dart';
 import 'package:flute_tris/game_info/enum/move_direction.dart';
 import 'package:flute_tris/game_info/enum/rotate_direction.dart';
 import 'package:flute_tris/game_info/enum/mino_type.dart';
-import 'package:flute_tris/game_info/common/sqare_cordinate.dart';
+import 'package:flute_tris/game_info/common/cordinate.dart';
 import 'package:flute_tris/game_info/operation_mino/mino_placement.dart';
-import 'package:flute_tris/game_info/operation_mino/placed_blocks.dart';
+import 'package:flute_tris/game_info/common/placed_blocks.dart';
 import 'package:flute_tris/game_info/render/block.dart';
 
 class InOperationMino {
@@ -16,7 +16,7 @@ class InOperationMino {
   /// ミノを囲む 3×3 / 4×4 マスの範囲のうちの左上の座標
   ///
   /// 初期値 = 左から4マス、最上部
-  SqareCordinate masterCordinate = SqareCordinate(4, 20);
+  Cordinate masterCordinate = Cordinate(4, 20);
 
   InOperationMino({
     @required this.minoType,
@@ -36,8 +36,8 @@ class InOperationMino {
     final movedCordinates =
             assignBlocksCordinatesBy(placement.currentPlacement),
         currentPlacedBlocks = PlacedBlocks.placedBlocks.fold(
-          <SqareCordinate>[],
-          (List<SqareCordinate> previous, row) =>
+          <Cordinate>[],
+          (List<Cordinate> previous, row) =>
               previous += row.map((b) => b.cordinate).toList(),
         );
     bool flag;
@@ -59,15 +59,15 @@ class InOperationMino {
           .forEach((index, block) => block.cordinate = movedCordinates[index]);
   }
 
-  List<SqareCordinate> assignBlocksCordinatesBy(List<List<int>> placement) {
-    final assignedCordinates = <SqareCordinate>[];
+  List<Cordinate> assignBlocksCordinatesBy(List<List<int>> placement) {
+    final assignedCordinates = <Cordinate>[];
     int x, y = 0;
 
     placement.forEach((row) {
       x = 0;
       row.forEach((block) {
         if (block == 1) {
-          SqareCordinate cordinate = masterCordinate + SqareCordinate(x, y);
+          Cordinate cordinate = masterCordinate + Cordinate(x, y);
           assignedCordinates.add(cordinate);
         }
         x += 1;

@@ -27,8 +27,7 @@ class MinoPlacement {
   }
 
   bool _tryDown() {
-    List<List<int>> placement = List.from(currentPlacement);
+    List<List<int?>> placement = List.from(currentPlacement);
 
-    return placement.map(() => )
   }
 }
