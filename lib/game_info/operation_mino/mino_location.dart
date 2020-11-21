@@ -28,10 +28,16 @@ class MinoLocation {
   }
 
   void _hardDrop() {
-    final List<Cordinate> tmp = List<Cordinate>.from(currentLocation);
-    while (PlacedBlocks.doseOverlapWith(tmp)) {
-      tmp.forEach((c) => c.toLeft());
+    final List<Cordinate> fin = List<Cordinate>.from(currentLocation),
+        tmp = List<Cordinate>.from(currentLocation);
+
+    while (true) {
+      tmp.forEach((c) => c.down());
+      if (PlacedBlocks.doseOverlapWith(tmp)) break;
+      fin.forEach((c) => c.down());
     }
+
+    currentLocation = fin;
 
     // 設置
   }
