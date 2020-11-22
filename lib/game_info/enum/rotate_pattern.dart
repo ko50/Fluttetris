@@ -70,7 +70,7 @@ extension RotatePatternWallKick on RotatePattern {
           Cordinate(1, -2),
         ];
       default:
-        return null;
+        return [];
     }
   }
 }

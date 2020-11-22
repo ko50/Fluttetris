@@ -25,9 +25,4 @@ class MinoPlacement {
         ? rotatedPlacement
         : rotatedPlacement.reversed.toList();
   }
-
-  bool _tryDown() {
-    List<List<int?>> placement = List.from(currentPlacement);
-
-  }
 }

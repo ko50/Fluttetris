@@ -13,9 +13,9 @@ extension MinoPlacements on TetroMino {
         ];
       case TetroMino.O:
         return [
-          [1, 1, 0],
-          [1, 1, 0],
           [0, 0, 0],
+          [0, 1, 1],
+          [0, 1, 1],
         ];
       case TetroMino.S:
         return [
@@ -49,7 +49,7 @@ extension MinoPlacements on TetroMino {
           [0, 0, 0, 0],
         ];
       default:
-        return null;
+        return [];
     }
   }
 
@@ -66,12 +66,12 @@ extension MinoPlacements on TetroMino {
       case TetroMino.L:
         return Colors.orange;
       case TetroMino.J:
-        return Colors.blue[700];
+        return Colors.blue;
       case TetroMino.I:
         return Colors.cyan;
 
       default:
-        return null;
+        return Colors.grey;
     }
   }
 }
