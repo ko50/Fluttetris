@@ -1,6 +1,7 @@
 import 'package:flute_tris/game_info/common/cordinate.dart';
 import 'package:flute_tris/game_info/common/placed_blocks.dart';
 import 'package:flute_tris/game_info/enum/mino_type.dart';
+import 'package:flute_tris/game_info/enum/rotate_direction.dart';
 import 'package:flute_tris/game_info/operation_mino/mino_placement.dart';
 
 class MinoLocation {
@@ -66,5 +67,20 @@ class MinoLocation {
     primeCordinate = primeTmp;
 
     // 設置
+  }
+
+  List<Cordinate> _parsePlacement(List<List<int>> placement) {
+    int x = 0, y = 0;
+    final List<Cordinate> parsed = [];
+
+    placement.forEach((row) {
+      row.forEach((block) {
+        parsed.add(primeCordinate + Cordinate(x, -y));
+        x++;
+      });
+      y++;
+    });
+
+    return parsed;
   }
 }
