@@ -1,14 +1,18 @@
 import 'package:flute_tris/game_info/common/cordinate.dart';
 import 'package:flute_tris/game_info/common/placed_blocks.dart';
+import 'package:flute_tris/game_info/enum/mino_type.dart';
+import 'package:flute_tris/game_info/operation_mino/mino_placement.dart';
 
 class MinoLocation {
   List<Cordinate> currentLocation;
+  final MinoPlacement placement;
 
   /// ミノが存在する 3×3 (4×4) の空間の左上の座標
   // TODO y=21にミノがあった時は生成時y=23になるようにする
   Cordinate primeCordinate = Cordinate(3, 22);
 
-  MinoLocation({required this.currentLocation});
+  MinoLocation({required this.currentLocation, required TetroMino minoType})
+      : placement = MinoPlacement(minoType);
 
   void _toRight() {
     final List<Cordinate> tmp = List<Cordinate>.from(currentLocation);
