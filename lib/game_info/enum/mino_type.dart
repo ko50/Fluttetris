@@ -44,8 +44,8 @@ extension MinoPlacements on TetroMino {
       case TetroMino.I:
         return [
           [0, 0, 0, 0],
-          [1, 1, 1, 1],
           [0, 0, 0, 0],
+          [1, 1, 1, 1],
           [0, 0, 0, 0],
         ];
       default:
