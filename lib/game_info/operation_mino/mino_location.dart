@@ -3,6 +3,7 @@ import 'package:flute_tris/game_info/common/placed_blocks.dart';
 import 'package:flute_tris/game_info/enum/mino_direction.dart';
 import 'package:flute_tris/game_info/enum/mino_type.dart';
 import 'package:flute_tris/game_info/enum/rotate_direction.dart';
+import 'package:flute_tris/game_info/enum/rotate_pattern.dart';
 import 'package:flute_tris/game_info/operation_mino/mino_placement.dart';
 
 class MinoLocation {
@@ -71,6 +72,28 @@ class MinoLocation {
     primeCordinate = primeTmp;
 
     // 設置
+  }
+
+  void rotate(RotateDirection direction) {
+    final List<List<int>> rotatedPlacement = placement.provisiRotate(direction);
+    final List<Cordinate> rotatedCordinates = _parsePlacement(rotatedPlacement);
+    List<Cordinate> tmp = List.from(rotatedCordinates);
+
+    final RotatePattern? rotatePattern =
+        currentDirection.getRotatePattern(direction);
+
+    if (rotatePattern == null) return;
+
+    final Cordinate shift = rotatePattern.shiftedCordinates.firstWhere(
+      (_shift) {
+        tmp = rotatedCordinates.map((c) => c += _shift).toList();
+        return PlacedBlocks.doseOverlapWith(tmp) ? false : true;
+      },
+      orElse: () => Cordinate(0, 0),
+    );
+
+    primeCordinate += shift;
+    currentLocation.forEach((c) => c += shift);
   }
 
   List<Cordinate> _parsePlacement(List<List<int>> placement) {
