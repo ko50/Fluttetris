@@ -1,0 +1,80 @@
+import 'package:meta/meta.dart';
+
+import 'package:flute_tris/game_info/enum/move_direction.dart';
+import 'package:flute_tris/game_info/enum/rotate_direction.dart';
+import 'package:flute_tris/game_info/enum/mino_type.dart';
+import 'package:flute_tris/game_info/common/cordinate.dart';
+import 'package:flute_tris/game_info/operation_mino/mino_placement.dart';
+import 'package:flute_tris/game_info/common/placed_blocks.dart';
+import 'package:flute_tris/game_info/render/block.dart';
+
+class InOperationMino {
+  final TetroMino minoType;
+  final MinoPlacement placement;
+  final List<Block> blocks;
+
+  /// ミノを囲む 3×3 / 4×4 マスの範囲のうちの左上の座標
+  ///
+  /// 初期値 = 左から4マス、最上部
+  Cordinate masterCordinate = Cordinate(4, 20);
+
+  InOperationMino({
+    @required this.minoType,
+    @required this.placement,
+    @required this.blocks,
+  });
+
+  /// ミノを回転
+  void rotate(RotateDirection direction) {
+    final rotatedPlacement = placement.rotate(direction, minoType),
+        rotatedCordinates = assignBlocksCordinatesBy(rotatedPlacement),
+        currentPlacedBlocks = PlacedBlocks.allCordinates;
+  }
+
+  /// ミノを左右/下に移動
+  void move(MoveDirection direction) {
+    final movedCordinates =
+            assignBlocksCordinatesBy(placement.currentPlacement),
+        currentPlacedBlocks = PlacedBlocks.placedBlocks.fold(
+          <Cordinate>[],
+          (List<Cordinate> previous, row) =>
+              previous += row.map((b) => b.cordinate).toList(),
+        );
+    bool flag;
+
+    bool failedToMove = movedCordinates.any((cordinate) {
+      cordinate += direction.movement;
+      flag = false;
+      currentPlacedBlocks.forEach((alreadyCordinate) {
+        if (flag) return;
+        flag = cordinate.isConflicting(alreadyCordinate);
+      });
+      print(cordinate);
+      return flag;
+    });
+
+    if (!failedToMove)
+      blocks
+          .asMap()
+          .forEach((index, block) => block.cordinate = movedCordinates[index]);
+  }
+
+  List<Cordinate> assignBlocksCordinatesBy(List<List<int>> placement) {
+    final assignedCordinates = <Cordinate>[];
+    int x, y = 0;
+
+    placement.forEach((row) {
+      x = 0;
+      row.forEach((block) {
+        if (block == 1) {
+          Cordinate cordinate = masterCordinate + Cordinate(x, y);
+          assignedCordinates.add(cordinate);
+        }
+        x += 1;
+      });
+      y -= 1;
+    });
+
+    return assignedCordinates;
+  }
+}
