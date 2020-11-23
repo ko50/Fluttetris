@@ -4,11 +4,14 @@ import 'package:flute_tris/game_info/enum/rotate_direction.dart';
 
 class MinoPlacement {
   final TetroMino minoType;
-  final List<List<int>> currentPlacement;
+  List<List<int>> currentPlacement;
 
   MinoPlacement(this.minoType) : currentPlacement = minoType.defaultPlacement;
 
-  List<List<int>> rotate(RotateDirection direction) {
+  set rotate(List<List<int>> rotatedPlacement) =>
+      currentPlacement = rotatedPlacement;
+
+  List<List<int>> provisiRotate(RotateDirection direction) {
     if (minoType == TetroMino.O) return currentPlacement;
 
     List<List<int>> beforePlacement = List.from(
