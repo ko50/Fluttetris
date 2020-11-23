@@ -3,8 +3,6 @@ import 'package:flute_tris/game_info/operation_mino/mino_location.dart';
 import 'package:flute_tris/game_info/enum/move_direction.dart';
 import 'package:flute_tris/game_info/enum/rotate_direction.dart';
 import 'package:flute_tris/game_info/enum/mino_type.dart';
-import 'package:flute_tris/game_info/common/cordinate.dart';
-import 'package:flute_tris/game_info/common/placed_blocks.dart';
 import 'package:flute_tris/game_info/render/block.dart';
 
 class OperationMino {
@@ -14,18 +12,26 @@ class OperationMino {
 
   OperationMino({required this.minoType})
       : location = MinoLocation(minoType: minoType) {
-    blocks = location.currentLocation
-        .map<Block>((c) => Block(
-              cordinate: c,
-              color: minoType.color,
-            ))
-        .toList();
+    _ensureBlocks();
   }
 
-  // TODO ミノの現在の座標を随時blocksに繁栄しないといけないので関数を書け
   /// ミノを回転
-  void rotate(RotateDirection direction) => location.rotate(direction);
+  void rotate(RotateDirection direction) {
+    location.rotate(direction);
+    _ensureBlocks();
+  }
 
   /// ミノを左右/下に移動
-  void move(MoveDirection direction) => location.move(direction);
+  void move(MoveDirection direction) {
+    location.move(direction);
+    _ensureBlocks();
+  }
+
+  /// ミノの座標をblocksにも反映する
+  void _ensureBlocks() => blocks = location.currentLocation
+      .map<Block>((c) => Block(
+            cordinate: c,
+            color: minoType.color,
+          ))
+      .toList();
 }
