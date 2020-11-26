@@ -9,4 +9,11 @@ class Nexts {
 
     nexts.addAll(TetroMino.values..shuffle());
   }
+
+  static void onMinoPlaced() {
+    nexts.removeAt(0);
+    supplyNexts();
+
+    nextMino = nexts[0];
+  }
 }
