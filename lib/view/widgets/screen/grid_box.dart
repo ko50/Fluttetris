@@ -5,7 +5,7 @@ class GridBox extends StatelessWidget {
   final int width;
   final List<Widget> children;
 
-  static const int gridSize = 30;
+  static const double gridSize = 30.0;
 
   GridBox({
     required this.height,
@@ -14,8 +14,8 @@ class GridBox extends StatelessWidget {
   });
 
   Widget _block() => Container(
-        height: 30,
-        width: 30,
+        height: gridSize,
+        width: gridSize,
         color: Colors.grey[400],
         decoration: BoxDecoration(
           border: Border.all(width: 1.0, color: Colors.white),
@@ -32,8 +32,8 @@ class GridBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (height * gridSize).toDouble(),
-      width: (width * gridSize).toDouble(),
+      height: height * gridSize,
+      width: width * gridSize,
       child: Stack(children: [_background()] + children),
     );
   }
