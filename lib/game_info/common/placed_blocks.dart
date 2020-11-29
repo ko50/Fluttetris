@@ -2,9 +2,9 @@ import 'package:flute_tris/game_info/common/cordinate.dart';
 import 'package:flute_tris/game_info/render/block.dart';
 
 class PlacedBlocks {
-  final List<Block> placedBlocks = [];
+  static final List<Block> placedBlocks = [];
 
-  bool doseOverlapWith(List<Cordinate> pendingCordinates) {
+  static bool doseOverlapWith(List<Cordinate> pendingCordinates) {
     final bool isOverlapping = allCordinates.any(
       (cordinate) => pendingCordinates
           .any((pendingCordinate) => pendingCordinate.isStucking(cordinate)),
@@ -13,10 +13,10 @@ class PlacedBlocks {
     return isOverlapping;
   }
 
-  List<Cordinate> get allCordinates =>
+  static List<Cordinate> get allCordinates =>
       placedBlocks.map((block) => block.cordinate).toList();
 
-  int clearFilledLine() {
+  static int clearFilledLine() {
     int clearedLineCount = 0;
     List<int> canClearedLinesY = [];
     List<Cordinate> line = [];

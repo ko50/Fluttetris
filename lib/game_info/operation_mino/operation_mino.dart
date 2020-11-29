@@ -16,14 +16,14 @@ class OperationMino {
   }
 
   /// ミノを回転
-  void rotate(RotateDirection direction, PlacedBlocks placedBlocks) {
-    location.rotate(direction, placedBlocks);
+  void rotate(RotateDirection direction) {
+    location.rotate(direction);
     _ensureBlocksAtCurrentCordinates();
   }
 
   /// ミノを左右/下に移動
-  void move(MoveDirection direction, PlacedBlocks placedBlocks) {
-    location.move(direction, placedBlocks);
+  void move(MoveDirection direction) {
+    location.move(direction);
     _ensureBlocksAtCurrentCordinates();
   }
 

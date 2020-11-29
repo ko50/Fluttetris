@@ -21,24 +21,24 @@ class MinoLocation {
     currentLocation = _parsePlacement(minoType.defaultPlacement);
   }
 
-  void move(MoveDirection direction, PlacedBlocks placedBlocks) {
+  void move(MoveDirection direction) {
     switch (direction) {
       case MoveDirection.Up:
-        _hardDrop(placedBlocks);
+        _hardDrop();
         return;
       case MoveDirection.Down:
-        _down(placedBlocks);
+        _down();
         return;
       case MoveDirection.Right:
-        _toRight(placedBlocks);
+        _toRight();
         return;
       case MoveDirection.Left:
-        _toLeft(placedBlocks);
+        _toLeft();
         return;
     }
   }
 
-  void rotate(RotateDirection direction, PlacedBlocks placedBlocks) {
+  void rotate(RotateDirection direction) {
     final List<List<int>> rotatedPlacement = placement.provisiRotate(direction);
     final List<Cordinate> rotatedCordinates = _parsePlacement(rotatedPlacement);
     List<Cordinate> tmp = List.from(rotatedCordinates);
@@ -51,7 +51,7 @@ class MinoLocation {
     final Cordinate shift = rotatePattern.shiftedCordinates.firstWhere(
       (_shift) {
         tmp = rotatedCordinates.map((c) => c += _shift).toList();
-        return placedBlocks.doseOverlapWith(tmp) ? false : true;
+        return PlacedBlocks.doseOverlapWith(tmp) ? false : true;
       },
       orElse: () => Cordinate(0, 0),
     );
@@ -60,50 +60,50 @@ class MinoLocation {
     currentLocation.forEach((c) => c += shift);
   }
 
-  void _toRight(PlacedBlocks placedBlocks) {
+  void _toRight() {
     final List<Cordinate> tmp = List<Cordinate>.from(currentLocation);
     final Cordinate primeTmp = primeCordinate;
     tmp.forEach((c) => c.toRight());
     primeTmp.toRight();
 
-    if (placedBlocks.doseOverlapWith(tmp)) {
+    if (PlacedBlocks.doseOverlapWith(tmp)) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }
   }
 
-  void _toLeft(PlacedBlocks placedBlocks) {
+  void _toLeft() {
     final List<Cordinate> tmp = List<Cordinate>.from(currentLocation);
     final Cordinate primeTmp = primeCordinate;
     tmp.forEach((c) => c.toLeft());
     primeTmp.toLeft();
 
-    if (placedBlocks.doseOverlapWith(tmp)) {
+    if (PlacedBlocks.doseOverlapWith(tmp)) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }
   }
 
-  void _down(PlacedBlocks placedBlocks) {
+  void _down() {
     final List<Cordinate> tmp = List<Cordinate>.from(currentLocation);
     final Cordinate primeTmp = primeCordinate;
     tmp.forEach((c) => c.down());
     primeTmp.down();
 
-    if (placedBlocks.doseOverlapWith(tmp)) {
+    if (PlacedBlocks.doseOverlapWith(tmp)) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }
   }
 
-  void _hardDrop(PlacedBlocks placedBlocks) {
+  void _hardDrop() {
     final List<Cordinate> fin = List<Cordinate>.from(currentLocation),
         tmp = List<Cordinate>.from(currentLocation);
     final Cordinate primeTmp = primeCordinate;
 
     while (true) {
       tmp.forEach((c) => c.down());
-      if (placedBlocks.doseOverlapWith(tmp)) break;
+      if (PlacedBlocks.doseOverlapWith(tmp)) break;
       fin.forEach((c) => c.down());
       primeTmp.down();
     }
