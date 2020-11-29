@@ -34,6 +34,7 @@ class GridBox extends StatelessWidget {
     return Container(
       height: height * gridSize,
       width: width * gridSize,
+      decoration: BoxDecoration(boxShadow: [BoxShadow()]),
       child: Stack(children: [_background()] + children),
     );
   }
