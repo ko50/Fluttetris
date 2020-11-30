@@ -24,7 +24,7 @@ class NextsDisplayer extends StatelessWidget {
     final List<Widget> displayers = [];
 
     displayers.add(_recent(nexts.first));
-    displayers.addAll(nexts.sublist(1).map((mino) => _sub(mino)).toList());
+    displayers.addAll(nexts.sublist(1, 5).map((mino) => _sub(mino)).toList());
 
     return displayers;
   }
