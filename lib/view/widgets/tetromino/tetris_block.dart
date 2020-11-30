@@ -12,12 +12,16 @@ class TetrisBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Positioned(
       height: gridSize,
       width: gridSize,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1.0, color: Colors.white),
-        color: block.color,
+      left: block.cordinate.x * gridSize,
+      bottom: block.cordinate.y * gridSize,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(width: 1.0, color: Colors.white),
+          color: block.color,
+        ),
       ),
     );
   }
