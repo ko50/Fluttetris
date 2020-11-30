@@ -9,14 +9,12 @@ import 'package:flute_tris/view/widgets/tetromino/tetris_block.dart';
 class BlockDisplayer extends StatelessWidget {
   final int height;
   final int width;
-  final List<Widget> children;
 
   static const double gridSize = 30.0;
 
   BlockDisplayer({
     required this.height,
     required this.width,
-    required this.children,
   });
 
   Widget _block() => Container(
