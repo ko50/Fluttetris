@@ -7,8 +7,8 @@ class TetrisBlock extends StatelessWidget {
 
   TetrisBlock({
     required this.block,
-    required int gridSize,
-  }) : gridSize = gridSize.toDouble();
+    required this.gridSize,
+  });
 
   @override
   Widget build(BuildContext context) {
