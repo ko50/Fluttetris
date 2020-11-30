@@ -5,7 +5,7 @@ import 'package:flute_tris/view/widgets/tetromino/tetris_block.dart';
 import 'package:flutter/material.dart';
 
 class TetroMinoDisplayer extends StatelessWidget {
-  final TetroMino minoType;
+  final TetroMino? minoType;
   final double gridSize;
   final double scale;
 
@@ -16,10 +16,12 @@ class TetroMinoDisplayer extends StatelessWidget {
   });
 
   List<TetrisBlock> _blocksFromPlacement() {
+    if (minoType == null) return [];
+
     int x = 0, y = 0;
     final List<Cordinate> cordinates = [];
 
-    minoType.defaultPlacement.forEach((row) {
+    minoType?.defaultPlacement.forEach((row) {
       row.forEach((block) {
         cordinates.add(Cordinate(x, -y));
         x++;
@@ -28,7 +30,11 @@ class TetroMinoDisplayer extends StatelessWidget {
     });
 
     return cordinates.map((c) {
-      final Block block = Block(color: minoType.color, cordinate: c);
+      final Block block = Block(
+        color: minoType?.color ?? Colors.grey,
+        cordinate: c,
+      );
+
       return TetrisBlock(block: block, gridSize: gridSize);
     }).toList();
   }
