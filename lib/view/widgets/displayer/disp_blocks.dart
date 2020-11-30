@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class GridBox extends StatelessWidget {
+class BlockDisplayer extends StatelessWidget {
   final int height;
   final int width;
   final List<Widget> children;
 
   static const double gridSize = 30.0;
 
-  GridBox({
+  BlockDisplayer({
     required this.height,
     required this.width,
     required this.children,
