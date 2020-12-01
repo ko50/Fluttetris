@@ -17,18 +17,24 @@ class BlockDisplayer extends StatelessWidget {
     @required this.width,
   });
 
-  Widget _block() => Container(
-        height: gridSize,
-        width: gridSize,
-        decoration: BoxDecoration(
-          color: Colors.grey[400],
-          border: Border.all(width: 1.0, color: Colors.white),
+  Widget _block() => Flexible(
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: Container(
+            height: gridSize,
+            width: gridSize,
+            decoration: BoxDecoration(
+              color: Colors.grey[400],
+              border: Border.all(width: 1.0, color: Colors.white),
+            ),
+          ),
         ),
       );
 
   Widget _background() {
     final List<Widget> row = List.filled(width, _block());
-    final List<Row> rows = List.filled(height, Row(children: row));
+    final List<Widget> rows =
+        List.filled(height, Flexible(child: Row(children: row)));
 
     return Container(child: Column(children: rows));
   }
@@ -48,9 +54,7 @@ class BlockDisplayer extends StatelessWidget {
                 .toList();
 
             return Container(
-              height: height * gridSize,
-              width: width * gridSize,
-              decoration: BoxDecoration(boxShadow: [BoxShadow()]),
+              margin: EdgeInsets.symmetric(horizontal: 8.0),
               child: Stack(children: [_background()] + wholeBlocks),
             );
           },

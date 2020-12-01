@@ -53,6 +53,48 @@ extension MinoPlacements on TetroMino {
     }
   }
 
+  List<List<int>> get previewPlacement {
+    switch (this) {
+      case TetroMino.T:
+        return [
+          [0, 1, 1, 1],
+          [0, 0, 1, 0],
+        ];
+      case TetroMino.O:
+        return [
+          [0, 1, 1],
+          [0, 1, 1],
+        ];
+      case TetroMino.S:
+        return [
+          [0, 0, 1, 1],
+          [0, 1, 1, 0],
+        ];
+      case TetroMino.Z:
+        return [
+          [0, 1, 1, 0],
+          [0, 0, 1, 1],
+        ];
+      case TetroMino.L:
+        return [
+          [0, 0, 0, 1],
+          [0, 1, 1, 1],
+        ];
+      case TetroMino.J:
+        return [
+          [0, 1, 0, 0],
+          [0, 1, 1, 1],
+        ];
+      case TetroMino.I:
+        return [
+          [1, 1, 1, 1],
+          [0, 0, 0, 0],
+        ];
+      default:
+        return [];
+    }
+  }
+
   Color get color {
     switch (this) {
       case TetroMino.T:

@@ -11,22 +11,10 @@ class HoldedMinoDisplayer extends StatelessWidget {
     final TetroMino holdedMino = Provider.of<HoldModel>(context).holdedMino;
 
     return Container(
-      child: Stack(
-        children: [
-          TetroMinoDisplayer(
-            minoType: holdedMino,
-            gridSize: 30,
-            scale: 1,
-          ),
-          Positioned(
-            top: 2,
-            child: Text(
-              "Hold",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: Colors.grey[900]),
-            ),
-          ),
-        ],
+      child: TetroMinoDisplayer(
+        minoType: holdedMino,
+        gridSize: 18,
+        scale: 1,
       ),
     );
   }

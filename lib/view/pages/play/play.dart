@@ -13,12 +13,13 @@ import 'package:flute_tris/view/widgets/displayer/disp_nexts.dart';
 class Play extends StatelessWidget {
   Widget _displays() {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HoldedMinoDisplayer(),
-          BlockDisplayer(height: 21, width: 10),
+          Expanded(child: BlockDisplayer(height: 20, width: 10)),
           NextsDisplayer(),
         ],
       ),
@@ -46,7 +47,17 @@ class Play extends StatelessWidget {
 
             return OperationModel(firstMino);
           },
-          child: Container(child: Column(children: [_displays()])),
+          child: Container(
+            child: Column(
+              children: [
+                Expanded(child: _displays()),
+                Container(
+                  height: 220,
+                  color: Colors.blueGrey,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
