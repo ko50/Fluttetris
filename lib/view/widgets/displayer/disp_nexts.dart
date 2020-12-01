@@ -31,13 +31,17 @@ class NextsDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<TetroMino> nextMinos = Provider.of<NextsModel>(context).nexts;
+    return Consumer(
+      builder: (BuildContext context, NextsModel nextsModel, _) {
+        final List<TetroMino> nextMinos = nextsModel.nexts;
 
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: _displayers(nextMinos),
-      ),
+        return Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: _displayers(nextMinos),
+          ),
+        );
+      },
     );
   }
 }
