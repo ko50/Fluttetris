@@ -6,19 +6,23 @@ import 'package:flute_tris/models/nexts_model.dart';
 import 'package:flute_tris/view/widgets/displayer/tetromino_displayer.dart';
 
 class NextsDisplayer extends StatelessWidget {
-  Widget _recent(TetroMino mino) => TetroMinoDisplayer(
-        minoType: mino,
-        gridSize: 30,
-        scale: 1,
+  Widget _recent(TetroMino mino) => Flexible(
+        child: TetroMinoDisplayer(
+          minoType: mino,
+          gridSize: 16,
+          scale: 1,
+        ),
       );
 
-  Widget _sub(TetroMino mino) => Padding(
-      padding: EdgeInsets.only(bottom: 8.0),
-      child: TetroMinoDisplayer(
-        minoType: mino,
-        gridSize: 30,
-        scale: 0.8,
-      ));
+  Widget _sub(TetroMino mino) => Flexible(
+        child: Padding(
+            padding: EdgeInsets.only(top: 8.0),
+            child: TetroMinoDisplayer(
+              minoType: mino,
+              gridSize: 16,
+              scale: 0.8,
+            )),
+      );
 
   List<Widget> _displayers(List<TetroMino> nexts) {
     final List<Widget> displayers = [];

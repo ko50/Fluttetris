@@ -18,24 +18,24 @@ class TetroMinoDisplayer extends StatelessWidget {
   List<TetrisBlock> _blocksFromPlacement() {
     if (minoType == null) return [];
 
-    int x = 0, y = 0;
     final List<Cordinate> cordinates = [];
 
-    minoType?.defaultPlacement.forEach((row) {
-      row.forEach((block) {
-        cordinates.add(Cordinate(x, -y));
-        x++;
-      });
-      y++;
-    });
+    minoType.previewPlacement.reversed
+        .toList()
+        .asMap()
+        .forEach((y, row) => row.asMap().forEach(
+              (x, block) {
+                if (block != 0) cordinates.add(Cordinate(x, y));
+              },
+            ));
 
     return cordinates.map((c) {
       final Block block = Block(
-        color: minoType?.color ?? Colors.grey,
+        color: minoType?.color ?? Colors.grey[400],
         cordinate: c,
       );
 
-      return TetrisBlock(block: block, gridSize: gridSize);
+      return TetrisBlock(block: block, gridSize: gridSize * scale);
     }).toList();
   }
 
@@ -45,15 +45,13 @@ class TetroMinoDisplayer extends StatelessWidget {
       width: gridSize * 4 * scale + 4,
       height: gridSize * 3 * scale + 4,
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: Colors.grey[400],
         boxShadow: [BoxShadow()],
       ),
       child: Center(
         child: Container(
           padding: EdgeInsets.all(2.0),
-          child: Stack(
-            children: _blocksFromPlacement(),
-          ),
+          child: Stack(children: _blocksFromPlacement()),
         ),
       ),
     );
