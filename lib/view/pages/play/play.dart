@@ -39,19 +39,14 @@ class Play extends StatelessWidget {
             create: (_) => PlacedBlocksModel(),
           ),
         ],
-        builder: (BuildContext context, Widget child) {
-          final TetroMino firstMino =
-              Provider.of<NextsModel>(context, listen: false).nextMino;
+        child: ChangeNotifierProvider<OperationModel>(
+          create: (_) {
+            final TetroMino firstMino =
+                Provider.of<NextsModel>(context, listen: false).nextMino;
 
-          return ChangeNotifierProvider<OperationModel>(
-            create: (_) => OperationModel(firstMino),
-            child: child,
-          );
-        },
-        child: Container(
-          child: Column(
-            children: [_displays()],
-          ),
+            return OperationModel(firstMino);
+          },
+          child: Container(child: Column(children: [_displays()])),
         ),
       ),
     );
