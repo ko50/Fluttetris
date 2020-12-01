@@ -4,7 +4,7 @@ import 'package:flute_tris/game_info/enum/rotate_pattern.dart';
 enum MinoDirection { N, W, S, E }
 
 extension ConvertRotatePattern on MinoDirection {
-  RotatePattern? getRotatePattern(RotateDirection direction) {
+  RotatePattern getRotatePattern(RotateDirection direction) {
     final bool isRight = direction == RotateDirection.Right;
 
     switch (this) {
