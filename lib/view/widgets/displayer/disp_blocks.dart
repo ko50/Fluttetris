@@ -13,8 +13,8 @@ class BlockDisplayer extends StatelessWidget {
   static const double gridSize = 30.0;
 
   BlockDisplayer({
-    required this.height,
-    required this.width,
+    @required this.height,
+    @required this.width,
   });
 
   Widget _block() => Container(

@@ -10,8 +10,7 @@ class Cordinate {
 
   Cordinate operator -(Cordinate other) => Cordinate(x + other.x, y - other.y);
 
-  bool operator ==(dynamic? cordinate) =>
-      cordinate?.x == x && cordinate?.y == y;
+  bool operator ==(dynamic cordinate) => cordinate?.x == x && cordinate?.y == y;
 
   @override
   int get hashCode => super.hashCode;

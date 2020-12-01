@@ -5,14 +5,14 @@ import 'package:flute_tris/view/widgets/tetromino/tetris_block.dart';
 import 'package:flutter/material.dart';
 
 class TetroMinoDisplayer extends StatelessWidget {
-  final TetroMino? minoType;
+  final TetroMino minoType;
   final double gridSize;
   final double scale;
 
   TetroMinoDisplayer({
-    required this.minoType,
-    required this.gridSize,
-    required this.scale,
+    @required this.minoType,
+    @required this.gridSize,
+    @required this.scale,
   });
 
   List<TetrisBlock> _blocksFromPlacement() {

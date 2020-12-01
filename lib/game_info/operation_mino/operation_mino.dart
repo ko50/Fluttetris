@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import 'package:flute_tris/game_info/enum/move_direction.dart';
 import 'package:flute_tris/game_info/enum/rotate_direction.dart';
 import 'package:flute_tris/game_info/enum/mino_type.dart';
@@ -8,9 +10,9 @@ import 'package:flute_tris/game_info/render/block.dart';
 class OperationMino {
   final TetroMino minoType;
   final MinoLocation location;
-  late final List<Block> blocks;
+  List<Block> blocks;
 
-  OperationMino({required this.minoType})
+  OperationMino({@required this.minoType})
       : location = MinoLocation(minoType: minoType) {
     _ensureBlocksAtCurrentCordinates();
   }

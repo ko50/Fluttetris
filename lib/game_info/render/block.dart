@@ -7,7 +7,7 @@ class Block {
   Cordinate cordinate;
 
   Block({
-    required this.cordinate,
-    required this.color,
+    @required this.cordinate,
+    @required this.color,
   });
 }

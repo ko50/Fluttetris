@@ -3,7 +3,11 @@ import 'package:flutter/widgets.dart';
 
 class NextsModel extends ChangeNotifier {
   List<TetroMino> nexts = TetroMino.values..shuffle();
-  late TetroMino nextMino = nexts[0];
+  TetroMino nextMino;
+
+  NextsModel() {
+    nextMino = nexts[0];
+  }
 
   void _supplyNexts() {
     if (nexts.length >= 6) return;

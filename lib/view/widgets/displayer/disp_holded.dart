@@ -8,7 +8,7 @@ import 'package:flute_tris/view/widgets/displayer/tetromino_displayer.dart';
 class HoldedMinoDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TetroMino? holdedMino = Provider.of<HoldModel>(context).holdedMino;
+    final TetroMino holdedMino = Provider.of<HoldModel>(context).holdedMino;
 
     return Container(
       child: Stack(
