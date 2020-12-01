@@ -2,7 +2,7 @@ import 'package:flute_tris/game_info/enum/mino_type.dart';
 import 'package:flutter/widgets.dart';
 
 class NextsModel extends ChangeNotifier {
-  List<TetroMino> nexts = TetroMino.values..shuffle();
+  List<TetroMino> nexts = List.from(TetroMino.values)..shuffle();
   TetroMino nextMino;
 
   NextsModel() {
@@ -12,7 +12,7 @@ class NextsModel extends ChangeNotifier {
   void _supplyNexts() {
     if (nexts.length >= 6) return;
 
-    nexts.addAll(TetroMino.values..shuffle());
+    nexts.addAll(List.from(TetroMino.values)..shuffle());
   }
 
   void onMinoPlaced() {
