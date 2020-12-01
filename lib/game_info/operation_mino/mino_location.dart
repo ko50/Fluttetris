@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import 'package:flute_tris/game_info/common/cordinate.dart';
 import 'package:flute_tris/game_info/common/placed_blocks.dart';
 import 'package:flute_tris/game_info/enum/mino_direction.dart';
@@ -9,7 +11,7 @@ import 'package:flute_tris/game_info/operation_mino/mino_placement.dart';
 
 class MinoLocation {
   MinoDirection currentDirection = MinoDirection.N;
-  late List<Cordinate> currentLocation;
+  List<Cordinate> currentLocation;
   final MinoPlacement placement;
   final TetroMino minoType;
 
@@ -17,7 +19,8 @@ class MinoLocation {
   // TODO y=21にミノがあった時は生成時y=23になるようにする
   Cordinate primeCordinate = Cordinate(3, 22);
 
-  MinoLocation({required this.minoType}) : placement = MinoPlacement(minoType) {
+  MinoLocation({@required this.minoType})
+      : placement = MinoPlacement(minoType) {
     currentLocation = _parsePlacement(minoType.defaultPlacement);
   }
 
@@ -43,7 +46,7 @@ class MinoLocation {
     final List<Cordinate> rotatedCordinates = _parsePlacement(rotatedPlacement);
     List<Cordinate> tmp = List.from(rotatedCordinates);
 
-    final RotatePattern? rotatePattern =
+    final RotatePattern rotatePattern =
         currentDirection.getRotatePattern(direction);
 
     if (rotatePattern == null) return;
