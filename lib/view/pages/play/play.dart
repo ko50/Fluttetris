@@ -41,7 +41,7 @@ class Play extends StatelessWidget {
           ),
         ],
         child: ChangeNotifierProvider<OperationModel>(
-          create: (_) {
+          create: (BuildContext context) {
             final TetroMino firstMino =
                 Provider.of<NextsModel>(context, listen: false).nextMino;
 
