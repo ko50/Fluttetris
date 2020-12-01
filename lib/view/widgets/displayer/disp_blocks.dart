@@ -20,8 +20,8 @@ class BlockDisplayer extends StatelessWidget {
   Widget _block() => Container(
         height: gridSize,
         width: gridSize,
-        color: Colors.grey[400],
         decoration: BoxDecoration(
+          color: Colors.grey[400],
           border: Border.all(width: 1.0, color: Colors.white),
         ),
       );
@@ -35,20 +35,27 @@ class BlockDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Block> placedBlocks =
-            Provider.of<PlacedBlocksModel>(context).placedBlocks,
-        operationBlocks =
-            Provider.of<OperationModel>(context).operationMino.blocks;
+    return Consumer(
+      builder: (BuildContext context, PlacedBlocksModel placedBlocksModel, _) {
+        final List<Block> placedBlocks = placedBlocksModel.placedBlocks;
 
-    final List<Widget> wholeBlocks = (placedBlocks + operationBlocks)
-        .map((b) => TetrisBlock(block: b, gridSize: gridSize))
-        .toList();
+        return Consumer(
+          builder: (BuildContext context, OperationModel operationModel, __) {
+            // final List<Block> operationBlocks = operationModel.operationMino.blocks;
 
-    return Container(
-      height: height * gridSize,
-      width: width * gridSize,
-      decoration: BoxDecoration(boxShadow: [BoxShadow()]),
-      child: Stack(children: [_background()] + wholeBlocks),
+            final List<Widget> wholeBlocks = (placedBlocks + [])
+                .map((b) => TetrisBlock(block: b, gridSize: gridSize))
+                .toList();
+
+            return Container(
+              height: height * gridSize,
+              width: width * gridSize,
+              decoration: BoxDecoration(boxShadow: [BoxShadow()]),
+              child: Stack(children: [_background()] + wholeBlocks),
+            );
+          },
+        );
+      },
     );
   }
 }
