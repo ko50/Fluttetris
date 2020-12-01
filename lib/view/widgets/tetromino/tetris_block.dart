@@ -6,8 +6,8 @@ class TetrisBlock extends StatelessWidget {
   final double gridSize;
 
   TetrisBlock({
-    required this.block,
-    required this.gridSize,
+    @required this.block,
+    @required this.gridSize,
   });
 
   @override
