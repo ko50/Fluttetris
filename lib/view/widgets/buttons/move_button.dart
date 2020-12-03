@@ -1,23 +1,28 @@
+import 'package:flute_tris/game_info/enum/move_direction.dart';
+import 'package:flute_tris/models/operation_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MoveButton extends StatelessWidget {
   final void Function() onPressed;
-  final int quarterTurns;
+  final MoveDirection moveDirection;
 
   MoveButton({
     @required this.onPressed,
-    this.quarterTurns = 0,
+    @required this.moveDirection,
   });
 
   @override
   Widget build(BuildContext context) {
+    final OperationModel operationModel = context.read<OperationModel>();
+
     return RotatedBox(
-      quarterTurns: quarterTurns,
+      quarterTurns: moveDirection.index,
       child: Container(
         height: 40,
         width: 90,
         child: RaisedButton(
-          onPressed: () => onPressed(),
+          onPressed: () => operationModel.move(moveDirection),
           shape: BeveledRectangleBorder(
             borderRadius: BorderRadius.circular(50),
             side: BorderSide(width: 2.0, color: Colors.black),
