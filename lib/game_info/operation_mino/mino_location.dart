@@ -54,13 +54,18 @@ class MinoLocation {
     final Cordinate shift = rotatePattern.shiftedCordinates.firstWhere(
       (_shift) {
         tmp = rotatedCordinates.map((c) => c += _shift).toList();
-        return PlacedBlocks.doseOverlapWith(tmp) ? false : true;
+        return !PlacedBlocks.doseOverlapWith(tmp);
       },
-      orElse: () => Cordinate(0, 0),
+      orElse: () => null,
     );
 
-    primeCordinate += shift;
-    currentLocation.forEach((c) => c += shift);
+    if (shift != null) {
+      placement.rotate = rotatedPlacement;
+      currentLocation = rotatedCordinates;
+
+      primeCordinate += shift;
+      currentLocation.forEach((c) => c += shift);
+    }
   }
 
   void _toRight() {
