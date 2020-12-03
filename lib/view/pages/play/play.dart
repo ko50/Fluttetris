@@ -34,7 +34,7 @@ class Play extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: MoveButton.unit()),
-          RotateButton.unit(),
+          Expanded(child: RotateButton.unit()),
         ],
       ),
     );

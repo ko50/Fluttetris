@@ -15,13 +15,13 @@ class RotateButton extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            bottom: 8.0,
-            left: 8.0,
+            bottom: 32.0,
+            left: 32.0,
             child: RotateButton(rotateDirection: RotateDirection.Left),
           ),
           Positioned(
-            top: 8.0,
-            right: 8.0,
+            top: 32.0,
+            right: 32.0,
             child: RotateButton(rotateDirection: RotateDirection.Right),
           ),
         ],

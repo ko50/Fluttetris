@@ -16,24 +16,24 @@ class MoveButton extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Positioned(
-            left: 2.0,
+            left: 1.0,
             height: 50,
             width: 95,
             child: MoveButton(moveDirection: MoveDirection.Left),
           ),
           Positioned(
-            top: 2.0,
+            top: 1.0,
             height: 95,
             child: MoveButton(moveDirection: MoveDirection.Up),
           ),
           Positioned(
-            right: 2.0,
+            right: 1.0,
             height: 50,
             width: 95,
             child: MoveButton(moveDirection: MoveDirection.Right),
           ),
           Positioned(
-            bottom: 2.0,
+            bottom: 1.0,
             height: 95,
             child: MoveButton(moveDirection: MoveDirection.Down),
           ),
