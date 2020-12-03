@@ -36,11 +36,12 @@ class PlacedBlocksModel extends ChangeNotifier {
     final List<Block> alreadyAssigned = operationBlocks + placedBlocks;
     final List<Block> whole = [];
 
-    for (int y = 0; y <= height; y++) {
-      for (int x = 0; x <= width; x++) {
+    for (int y = height; y > 0; y--) {
+      for (int x = 0; x < width; x++) {
         final Cordinate current = Cordinate(x, y);
         final Block pointedBlock = alreadyAssigned.firstWhere(
           (b) => b.cordinate == current,
+          orElse: () => null,
         );
 
         whole.add(pointedBlock == null

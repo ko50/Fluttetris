@@ -17,7 +17,7 @@ class MinoLocation {
 
   /// ミノが存在する 3×3 (4×4) の空間の左上の座標
   // TODO y=21にミノがあった時は生成時y=23になるようにする
-  Cordinate primeCordinate = Cordinate(3, 20);
+  Cordinate primeCordinate = Cordinate(3, 15);
 
   MinoLocation({@required this.minoType})
       : placement = MinoPlacement(minoType) {
@@ -122,7 +122,7 @@ class MinoLocation {
 
     placement.toList().asMap().forEach((y, row) => row.asMap().forEach(
           (x, block) {
-            if (block != 0) parsed.add(primeCordinate + Cordinate(x, y));
+            if (block != 0) parsed.add(primeCordinate + Cordinate(x, -y));
           },
         ));
 

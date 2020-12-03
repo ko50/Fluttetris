@@ -30,19 +30,34 @@ class BlockDisplayer extends StatelessWidget {
             final List<Block> filledField =
                 placedBlocksModel.fillBlank(operationBlocks, height, width);
 
-            return Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.0),
-              height: height * gridSize,
-              width: width * gridSize,
-              child: GridView.count(
-                crossAxisCount: 10,
-                children: filledField
-                    .map((b) => TetrisBlock(
-                          cordinate: b.cordinate,
-                          color: b.color,
-                          gridSize: 30,
-                        ))
-                    .toList(),
+            return AspectRatio(
+              aspectRatio: 0.5,
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 8.0),
+                width: width * gridSize,
+                height: height * gridSize,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1.0,
+                    color: Colors.grey[400],
+                  ),
+                ),
+                child: GridView.count(
+                  physics: NeverScrollableScrollPhysics(),
+                  semanticChildCount: height * width,
+                  childAspectRatio: 1,
+                  crossAxisCount: 10,
+                  children: filledField
+                      .map((b) => Container(
+                            height: gridSize,
+                            width: gridSize,
+                            decoration: BoxDecoration(
+                              color: b.color,
+                              border: Border.all(color: Colors.white),
+                            ),
+                          ))
+                      .toList(),
+                ),
               ),
             );
           },
