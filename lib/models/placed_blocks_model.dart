@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:flute_tris/game_info/common/cordinate.dart';
@@ -29,5 +30,25 @@ class PlacedBlocksModel extends ChangeNotifier {
     notifyListeners();
 
     return clearedLineCount;
+  }
+
+  List<Block> fillBlank(List<Block> operationBlocks, int height, int width) {
+    final List<Block> alreadyAssigned = operationBlocks + placedBlocks;
+    final List<Block> whole = [];
+
+    for (int y = 0; y <= height; y++) {
+      for (int x = 0; x <= width; x++) {
+        final Cordinate current = Cordinate(x, y);
+        final Block pointedBlock = alreadyAssigned.firstWhere(
+          (b) => b.cordinate == current,
+        );
+
+        whole.add(pointedBlock == null
+            ? Block(cordinate: current, color: Colors.grey[400])
+            : pointedBlock);
+      }
+    }
+
+    return whole;
   }
 }
