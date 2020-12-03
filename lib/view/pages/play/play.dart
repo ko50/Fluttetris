@@ -1,4 +1,3 @@
-import 'package:flute_tris/view/widgets/buttons/rotate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +6,8 @@ import 'package:flute_tris/models/hold_model.dart';
 import 'package:flute_tris/models/nexts_model.dart';
 import 'package:flute_tris/models/operation_model.dart';
 import 'package:flute_tris/models/placed_blocks_model.dart';
+import 'package:flute_tris/view/widgets/buttons/move_button.dart';
+import 'package:flute_tris/view/widgets/buttons/rotate_button.dart';
 import 'package:flute_tris/view/widgets/displayer/disp_blocks.dart';
 import 'package:flute_tris/view/widgets/displayer/disp_holded.dart';
 import 'package:flute_tris/view/widgets/displayer/disp_nexts.dart';
@@ -29,8 +30,10 @@ class Play extends StatelessWidget {
 
   Widget _buttons() {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Row(
         children: [
+          Expanded(child: MoveButton.unit()),
           RotateButton.unit(),
         ],
       ),

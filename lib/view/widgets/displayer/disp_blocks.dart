@@ -34,14 +34,6 @@ class BlockDisplayer extends StatelessWidget {
               aspectRatio: 0.5,
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 8.0),
-                width: width * gridSize,
-                height: height * gridSize,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1.0,
-                    color: Colors.grey[400],
-                  ),
-                ),
                 child: GridView.count(
                   physics: NeverScrollableScrollPhysics(),
                   semanticChildCount: height * width,
