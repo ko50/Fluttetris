@@ -35,7 +35,11 @@ class TetroMinoDisplayer extends StatelessWidget {
         cordinate: c,
       );
 
-      return TetrisBlock(block: block, gridSize: gridSize * scale);
+      return TetrisBlock(
+        cordinate: block.cordinate,
+        color: block.color,
+        gridSize: gridSize * scale,
+      );
     }).toList();
   }
 

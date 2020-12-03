@@ -1,3 +1,4 @@
+import 'package:flute_tris/game_info/common/cordinate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,45 +18,47 @@ class BlockDisplayer extends StatelessWidget {
     @required this.width,
   });
 
-  Widget _block() => Flexible(
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: Container(
-            height: gridSize,
-            width: gridSize,
-            decoration: BoxDecoration(
-              color: Colors.grey[400],
-              border: Border.all(width: 1.0, color: Colors.white),
-            ),
-          ),
-        ),
-      );
-
-  Widget _background() {
-    final List<Widget> row = List.filled(width, _block());
-    final List<Widget> rows =
-        List.filled(height, Flexible(child: Row(children: row)));
-
-    return Container(child: Column(children: rows));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (BuildContext context, PlacedBlocksModel placedBlocksModel, _) {
-        final List<Block> placedBlocks = placedBlocksModel.placedBlocks;
-
         return Consumer(
           builder: (BuildContext context, OperationModel operationModel, __) {
-            // final List<Block> operationBlocks = operationModel.operationMino.blocks;
+            final List<Block> operationBlocks =
+                operationModel.operationMino.blocks;
 
-            final List<Widget> wholeBlocks = (placedBlocks + [])
-                .map((b) => TetrisBlock(block: b, gridSize: gridSize))
-                .toList();
+            final List<Block> filledField =
+                placedBlocksModel.fillBlank(operationBlocks, height, width);
 
-            return Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Stack(children: [_background()] + wholeBlocks),
+            return AspectRatio(
+              aspectRatio: 0.5,
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 8.0),
+                width: width * gridSize,
+                height: height * gridSize,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1.0,
+                    color: Colors.grey[400],
+                  ),
+                ),
+                child: GridView.count(
+                  physics: NeverScrollableScrollPhysics(),
+                  semanticChildCount: height * width,
+                  childAspectRatio: 1,
+                  crossAxisCount: 10,
+                  children: filledField
+                      .map((b) => Container(
+                            height: gridSize,
+                            width: gridSize,
+                            decoration: BoxDecoration(
+                              color: b.color,
+                              border: Border.all(color: Colors.white),
+                            ),
+                          ))
+                      .toList(),
+                ),
+              ),
             );
           },
         );

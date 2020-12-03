@@ -7,6 +7,7 @@ class NextsModel extends ChangeNotifier {
 
   NextsModel() {
     nextMino = nexts[0];
+    nexts.removeAt(0);
   }
 
   void _supplyNexts() {
