@@ -17,7 +17,7 @@ class MinoLocation {
 
   /// ミノが存在する 3×3 (4×4) の空間の左上の座標
   // TODO y=21にミノがあった時は生成時y=23になるようにする
-  Cordinate primeCordinate = Cordinate(3, 15);
+  Cordinate primeCordinate = Cordinate(3, 20);
 
   MinoLocation({@required this.minoType})
       : placement = MinoPlacement(minoType) {
@@ -69,7 +69,7 @@ class MinoLocation {
     tmp.forEach((c) => c.toRight());
     primeTmp.toRight();
 
-    if (PlacedBlocks.doseOverlapWith(tmp)) {
+    if (!PlacedBlocks.doseOverlapWith(tmp)) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }
@@ -81,7 +81,7 @@ class MinoLocation {
     tmp.forEach((c) => c.toLeft());
     primeTmp.toLeft();
 
-    if (PlacedBlocks.doseOverlapWith(tmp)) {
+    if (!PlacedBlocks.doseOverlapWith(tmp)) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }
@@ -93,7 +93,7 @@ class MinoLocation {
     tmp.forEach((c) => c.down());
     primeTmp.down();
 
-    if (PlacedBlocks.doseOverlapWith(tmp)) {
+    if (!PlacedBlocks.doseOverlapWith(tmp)) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }

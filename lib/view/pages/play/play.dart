@@ -1,3 +1,5 @@
+import 'package:flute_tris/game_info/enum/move_direction.dart';
+import 'package:flute_tris/view/widgets/buttons/move_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +23,17 @@ class Play extends StatelessWidget {
           HoldedMinoDisplayer(),
           Flexible(child: BlockDisplayer(height: 20, width: 10)),
           NextsDisplayer(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buttons() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Row(
+        children: [
+          Expanded(child: MoveButton.unit()),
         ],
       ),
     );
@@ -51,10 +64,7 @@ class Play extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(child: _displays()),
-                Container(
-                  height: 250,
-                  color: Colors.blueGrey,
-                ),
+                _buttons(),
               ],
             ),
           ),
