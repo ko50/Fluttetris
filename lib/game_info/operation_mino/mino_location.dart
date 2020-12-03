@@ -17,7 +17,7 @@ class MinoLocation {
 
   /// ミノが存在する 3×3 (4×4) の空間の左上の座標
   // TODO y=21にミノがあった時は生成時y=23になるようにする
-  Cordinate primeCordinate = Cordinate(3, 22);
+  Cordinate primeCordinate = Cordinate(3, 20);
 
   MinoLocation({@required this.minoType})
       : placement = MinoPlacement(minoType) {
@@ -118,16 +118,13 @@ class MinoLocation {
   }
 
   List<Cordinate> _parsePlacement(List<List<int>> placement) {
-    int x = 0, y = 0;
     final List<Cordinate> parsed = [];
 
-    placement.forEach((row) {
-      row.forEach((block) {
-        parsed.add(primeCordinate + Cordinate(x, -y));
-        x++;
-      });
-      y++;
-    });
+    placement.toList().asMap().forEach((y, row) => row.asMap().forEach(
+          (x, block) {
+            if (block != 0) parsed.add(primeCordinate + Cordinate(x, y));
+          },
+        ));
 
     return parsed;
   }
