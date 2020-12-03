@@ -8,21 +8,55 @@ class RotateButton extends StatelessWidget {
 
   RotateButton({@required this.rotateDirection});
 
+  static Widget unit() {
+    return Container(
+      height: 200,
+      width: 200,
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 8.0,
+            left: 8.0,
+            child: RotateButton(rotateDirection: RotateDirection.Left),
+          ),
+          Positioned(
+            top: 8.0,
+            right: 8.0,
+            child: RotateButton(rotateDirection: RotateDirection.Right),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final OperationModel operationModel = context.read<OperationModel>();
-
-    return Container(
-      height: 50,
-      width: 50,
-      child: RaisedButton(
-        onPressed: () => operationModel.rotate(rotateDirection),
-        child: Icon(
-          rotateDirection == RotateDirection.Left
-              ? Icons.rotate_left
-              : Icons.rotate_right,
-        ),
-      ),
+    return Consumer(
+      builder: (BuildContext context, OperationModel operationModel, _) {
+        return Container(
+          height: 70,
+          width: 70,
+          child: RaisedButton(
+            elevation: 0,
+            focusElevation: 0,
+            hoverElevation: 0,
+            highlightElevation: 0,
+            onPressed: () => operationModel.rotate(rotateDirection),
+            color: Colors.white,
+            shape: CircleBorder(
+              side: BorderSide(
+                width: 2.0,
+                color: Colors.grey[400],
+              ),
+            ),
+            child: Icon(
+              rotateDirection == RotateDirection.Left
+                  ? Icons.rotate_left
+                  : Icons.rotate_right,
+            ),
+          ),
+        );
+      },
     );
   }
 }

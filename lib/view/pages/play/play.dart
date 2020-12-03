@@ -1,3 +1,4 @@
+import 'package:flute_tris/view/widgets/buttons/rotate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +27,15 @@ class Play extends StatelessWidget {
     );
   }
 
-  // Widget _operators() {}
+  Widget _buttons() {
+    return Container(
+      child: Row(
+        children: [
+          RotateButton.unit(),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +60,7 @@ class Play extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(child: _displays()),
-                Container(
-                  height: 250,
-                  color: Colors.blueGrey,
-                ),
+                _buttons(),
               ],
             ),
           ),
