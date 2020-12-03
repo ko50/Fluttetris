@@ -1,12 +1,15 @@
-import 'package:flute_tris/game_info/render/block.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flute_tris/game_info/common/cordinate.dart';
+
 class TetrisBlock extends StatelessWidget {
-  final Block block;
+  final Cordinate cordinate;
+  final Color color;
   final double gridSize;
 
   TetrisBlock({
-    @required this.block,
+    @required this.cordinate,
+    @required this.color,
     @required this.gridSize,
   });
 
@@ -15,12 +18,12 @@ class TetrisBlock extends StatelessWidget {
     return Positioned(
       height: gridSize,
       width: gridSize,
-      left: block.cordinate.x * gridSize,
-      bottom: block.cordinate.y * gridSize,
+      left: cordinate.x * gridSize,
+      bottom: cordinate.y * gridSize,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(width: 1.0, color: Colors.white),
-          color: block.color,
+          color: color,
         ),
       ),
     );
