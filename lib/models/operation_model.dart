@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 
+import 'package:flute_tris/game_info/render/block.dart';
 import 'package:flute_tris/game_info/common/placed_blocks.dart';
 import 'package:flute_tris/game_info/enum/mino_type.dart';
 import 'package:flute_tris/game_info/enum/move_direction.dart';
@@ -38,8 +39,8 @@ class OperationModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void put(TetroMino next) {
-    PlacedBlocks.placedBlocks.addAll(operationMino.blocks);
+  void put(TetroMino next, void Function(List<Block>) putNotifier) {
+    putNotifier(operationMino.blocks);
     operationMino = OperationMino(minoType: next);
 
     notifyListeners();

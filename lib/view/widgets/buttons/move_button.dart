@@ -1,5 +1,7 @@
 import 'package:flute_tris/game_info/enum/move_direction.dart';
+import 'package:flute_tris/models/nexts_model.dart';
 import 'package:flute_tris/models/operation_model.dart';
+import 'package:flute_tris/models/placed_blocks_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -56,7 +58,20 @@ class MoveButton extends StatelessWidget {
               focusElevation: 0,
               hoverElevation: 0,
               highlightElevation: 0,
-              onPressed: () => operationModel.move(moveDirection),
+              onPressed: () {
+                operationModel.move(moveDirection);
+
+                if (moveDirection == MoveDirection.Up) {
+                  final NextsModel nextsModel = context.read<NextsModel>();
+                  final PlacedBlocksModel blocksModel =
+                      context.read<PlacedBlocksModel>();
+
+                  operationModel.put(nextsModel.nextMino, (blocks) {
+                    blocksModel.addPlacedBlocks(blocks);
+                    nextsModel.pushOneOut();
+                  });
+                }
+              },
               shape: BeveledRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
                 side: BorderSide(width: 2.0, color: Colors.grey[400]),

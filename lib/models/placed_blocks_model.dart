@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,6 +9,11 @@ import 'package:flute_tris/game_info/render/block.dart';
 
 class PlacedBlocksModel extends ChangeNotifier {
   List<Block> placedBlocks = PlacedBlocks.placedBlocks;
+
+  void addPlacedBlocks(List<Block> newBlocks) {
+    PlacedBlocks.placedBlocks.addAll(newBlocks);
+    notifyListeners();
+  }
 
   int clearFilledLine() {
     int clearedLineCount = 0;

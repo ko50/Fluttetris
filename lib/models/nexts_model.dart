@@ -16,7 +16,7 @@ class NextsModel extends ChangeNotifier {
     nexts.addAll(List.from(TetroMino.values)..shuffle());
   }
 
-  void onMinoPlaced() {
+  void pushOneOut() {
     nexts.removeAt(0);
     _supplyNexts();
 

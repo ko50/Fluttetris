@@ -28,7 +28,6 @@ class MinoLocation {
     switch (direction) {
       case MoveDirection.Up:
         _hardDrop();
-        print('\n$currentLocation');
         return;
       case MoveDirection.Down:
         _down();
