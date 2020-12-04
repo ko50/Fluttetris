@@ -28,6 +28,7 @@ class MinoLocation {
     switch (direction) {
       case MoveDirection.Up:
         _hardDrop();
+        print('\n$currentLocation');
         return;
       case MoveDirection.Down:
         _down();
@@ -56,7 +57,7 @@ class MinoLocation {
         tmp = rotatedCordinates.map((c) => c += _shift).toList();
         final bool anyExcesses = tmp.any((c) => c.isExcess);
 
-        return !PlacedBlocks.doseOverlapWith(tmp) || anyExcesses;
+        return !PlacedBlocks.doseOverlapWith(tmp) && !anyExcesses;
       },
       orElse: () => null,
     );
@@ -71,58 +72,83 @@ class MinoLocation {
   }
 
   void _toRight() {
-    final List<Cordinate> tmp = List<Cordinate>.from(currentLocation);
-    final Cordinate primeTmp = primeCordinate;
+    List<Cordinate> tmp = List.filled(currentLocation.length, Cordinate(0, 0));
+    Cordinate primeTmp = Cordinate(0, 0);
+
+    tmp.asMap().forEach((index, _) => tmp[index] += currentLocation[index]);
+    primeTmp += primeCordinate;
+
     tmp.forEach((c) => c.toRight());
     primeTmp.toRight();
 
     final bool anyExcesses = tmp.any((c) => c.isExcess);
 
-    if (!PlacedBlocks.doseOverlapWith(tmp) || !anyExcesses) {
-      currentLocation = tmp;
-      primeCordinate = primeTmp;
-    }
+    if (PlacedBlocks.doseOverlapWith(tmp) || anyExcesses) return;
+
+    currentLocation = tmp;
+    primeCordinate = primeTmp;
   }
 
   void _toLeft() {
-    final List<Cordinate> tmp = List<Cordinate>.from(currentLocation);
-    final Cordinate primeTmp = primeCordinate;
+    List<Cordinate> tmp = List.filled(currentLocation.length, Cordinate(0, 0));
+    Cordinate primeTmp = Cordinate(0, 0);
+
+    tmp.asMap().forEach((index, _) => tmp[index] += currentLocation[index]);
+    primeTmp += primeCordinate;
+
     tmp.forEach((c) => c.toLeft());
     primeTmp.toLeft();
 
     final bool anyExcesses = tmp.any((c) => c.isExcess);
 
-    if (!PlacedBlocks.doseOverlapWith(tmp) || !anyExcesses) {
-      currentLocation = tmp;
-      primeCordinate = primeTmp;
-    }
+    if (PlacedBlocks.doseOverlapWith(tmp) || anyExcesses) return;
+
+    currentLocation = tmp;
+    primeCordinate = primeTmp;
   }
 
   void _down() {
-    final List<Cordinate> tmp = List<Cordinate>.from(currentLocation);
-    final Cordinate primeTmp = primeCordinate;
+    List<Cordinate> tmp = List.filled(currentLocation.length, Cordinate(0, 0));
+    Cordinate primeTmp = Cordinate(0, 0);
+
+    tmp.asMap().forEach((index, _) => tmp[index] += currentLocation[index]);
+    primeTmp += primeCordinate;
+
     tmp.forEach((c) => c.down());
     primeTmp.down();
 
     final bool anyExcesses = tmp.any((c) => c.isExcess);
 
-    if (!PlacedBlocks.doseOverlapWith(tmp) || !anyExcesses) {
-      currentLocation = tmp;
-      primeCordinate = primeTmp;
-    }
+    if (PlacedBlocks.doseOverlapWith(tmp) || anyExcesses) return;
+
+    currentLocation = tmp;
+    primeCordinate = primeTmp;
   }
 
   void _hardDrop() {
-    final List<Cordinate> fin = List<Cordinate>.from(currentLocation),
-        tmp = List<Cordinate>.from(currentLocation);
-    final Cordinate primeTmp = primeCordinate;
+    final List<Cordinate> fin = List<Cordinate>.filled(
+      currentLocation.length,
+      Cordinate(0, 0),
+    );
+    final List<Cordinate> tmp = List<Cordinate>.filled(
+      currentLocation.length,
+      Cordinate(0, 0),
+    );
+    Cordinate primeTmp = Cordinate(0, 0);
 
-    final bool anyExcesses = tmp.any((c) => c.isExcess);
+    fin.asMap().forEach((index, _) => fin[index] += currentLocation[index]);
+    tmp.asMap().forEach((index, _) => tmp[index] += currentLocation[index]);
+    primeTmp += primeCordinate;
+
+    bool anyExcesses = false;
 
     while (true) {
       tmp.forEach((c) => c.down());
+      anyExcesses = tmp.any((c) => c.isExcess);
+
       if (PlacedBlocks.doseOverlapWith(tmp) || anyExcesses) break;
       fin.forEach((c) => c.down());
+      print(fin);
       primeTmp.down();
     }
 
