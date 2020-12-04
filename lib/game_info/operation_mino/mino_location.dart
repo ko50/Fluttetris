@@ -27,7 +27,7 @@ class MinoLocation {
   void move(MoveDirection direction) {
     switch (direction) {
       case MoveDirection.Up:
-        _hardDrop();
+        //_hardDrop();
         return;
       case MoveDirection.Down:
         _down();
