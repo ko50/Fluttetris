@@ -54,7 +54,9 @@ class MinoLocation {
     final Cordinate shift = rotatePattern.shiftedCordinates.firstWhere(
       (_shift) {
         tmp = rotatedCordinates.map((c) => c += _shift).toList();
-        return !PlacedBlocks.doseOverlapWith(tmp);
+        final bool anyExcesses = tmp.any((c) => c.isExcess);
+
+        return !PlacedBlocks.doseOverlapWith(tmp) || anyExcesses;
       },
       orElse: () => null,
     );
@@ -74,7 +76,9 @@ class MinoLocation {
     tmp.forEach((c) => c.toRight());
     primeTmp.toRight();
 
-    if (!PlacedBlocks.doseOverlapWith(tmp)) {
+    final bool anyExcesses = tmp.any((c) => c.isExcess);
+
+    if (!PlacedBlocks.doseOverlapWith(tmp) || !anyExcesses) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }
@@ -86,7 +90,9 @@ class MinoLocation {
     tmp.forEach((c) => c.toLeft());
     primeTmp.toLeft();
 
-    if (!PlacedBlocks.doseOverlapWith(tmp)) {
+    final bool anyExcesses = tmp.any((c) => c.isExcess);
+
+    if (!PlacedBlocks.doseOverlapWith(tmp) || !anyExcesses) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }
@@ -98,7 +104,9 @@ class MinoLocation {
     tmp.forEach((c) => c.down());
     primeTmp.down();
 
-    if (!PlacedBlocks.doseOverlapWith(tmp)) {
+    final bool anyExcesses = tmp.any((c) => c.isExcess);
+
+    if (!PlacedBlocks.doseOverlapWith(tmp) || !anyExcesses) {
       currentLocation = tmp;
       primeCordinate = primeTmp;
     }
@@ -109,9 +117,11 @@ class MinoLocation {
         tmp = List<Cordinate>.from(currentLocation);
     final Cordinate primeTmp = primeCordinate;
 
+    final bool anyExcesses = tmp.any((c) => c.isExcess);
+
     while (true) {
       tmp.forEach((c) => c.down());
-      if (PlacedBlocks.doseOverlapWith(tmp)) break;
+      if (PlacedBlocks.doseOverlapWith(tmp) || anyExcesses) break;
       fin.forEach((c) => c.down());
       primeTmp.down();
     }
