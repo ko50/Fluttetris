@@ -14,10 +14,17 @@ class OperationModel extends ChangeNotifier {
 
   OperationModel(TetroMino minoType)
       : operationMino = OperationMino(minoType: minoType) {
+    _initiateTimer();
+  }
+
+  void _initiateTimer() {
     // TODO ポーズ機能実装 & タイマーへの反映
     timer = Timer.periodic(
-      Duration(milliseconds: 500),
-      (_) => operationMino.move(MoveDirection.Down),
+      Duration(milliseconds: 750),
+      (_) {
+        operationMino.move(MoveDirection.Down);
+        notifyListeners();
+      },
     );
   }
 
