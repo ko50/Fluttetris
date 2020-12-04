@@ -14,6 +14,14 @@ class PlacedBlocks with ChangeNotifier {
     return isOverlapping;
   }
 
+  static bool isAssignedUnderOf(List<Cordinate> cordinates) =>
+      cordinates.any((c) {
+        if (c.y <= 0) return true;
+
+        final Cordinate under = c..down();
+        return allCordinates.any((c) => c.isStucking(under));
+      });
+
   static List<Cordinate> get allCordinates =>
       placedBlocks.map((block) => block.cordinate).toList();
 }
