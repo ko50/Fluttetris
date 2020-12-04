@@ -43,7 +43,7 @@ class PlacedBlocksModel extends ChangeNotifier {
     final List<Block> alreadyAssigned = operationBlocks + placedBlocks;
     final List<Block> whole = [];
 
-    for (int y = height; y > 0; y--) {
+    for (int y = height - 1; y >= 0; y--) {
       for (int x = 0; x < width; x++) {
         final Cordinate current = Cordinate(x, y);
         final Block pointedBlock = alreadyAssigned.firstWhere(
